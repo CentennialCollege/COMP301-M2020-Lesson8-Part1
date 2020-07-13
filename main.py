@@ -4,6 +4,8 @@ from square import Square as sqr
 
 from randomdice import RandomDice
 
+import random
+
 squareOf5 = sqr(5)
 
 print("Square of 5 is " + str(squareOf5))
@@ -34,8 +36,13 @@ result = max(values[0], values[1], values[2])
 
 print(f"The Maximum value (of a string) is: {result}")
 
-diceResult = RandomDice(1, 6, 4)
+random.seed(40)
+diceResult = RandomDice("4d6")
 
-diceResult = RandomDice(1, 6, 4, "dl1")
 
-diceResult = RandomDice(1, 20, 2, "kh1")
+random.seed()
+diceResult = RandomDice("4d6", "dl1")
+
+diceResult = RandomDice("2d20", "kh1")
+
+diceResult = RandomDice("2d20", "kl1")
