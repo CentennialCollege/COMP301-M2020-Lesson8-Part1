@@ -27,19 +27,12 @@ def RandomDice(dice, mode="sum"):
             dice.append(baseDie)
         print(baseDie, end=" ")
 
-    #sort
-    if ((mode == "dl1") or (mode == "kl1")):
-        dice = sorted(dice, reverse=True)
-    elif mode == "kh1":
-        dice = sorted(dice)
-
-    #reduce
-    if mode == "dl1":
-        dice.pop()
-        result = sum(dice)
-    elif ((mode == "kh1") or (mode == "kl1")):
-        dice = dice.pop()
-        result = dice
+    if(mode != "sum"):
+        dice = sorted(dice) if mode == "kh1" else sorted(dice, reverse=True) #sort
+        
+        if mode == "dl1": #drop a die
+            dice.pop()
+        result = sum(dice) if mode == "dl1" else dice.pop()
 
     print(f"\nResult is : {result} \n")
 
