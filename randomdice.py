@@ -6,66 +6,41 @@ def RandomDice(dice, mode="sum"):
         prints each die rolled and returns the result
     """
 
+    #splits the dice argument into two parts dice[0] and dice[1]
     dice = dice.split("d")
-    dice_num = int(dice[0])
+    dice_num = int(dice[0]) # how many dice
     min = 1
-    max = int(dice[1])
+    max = int(dice[1]) # dice type
 
     result = 0
     dice = []
 
-    if mode == "sum":
-        for roll in range(dice_num):
-            baseDie = r(min, max+1)
-            print(baseDie, end=" ")
+    print("Mode: " + mode)
+    print("Rolls: ", end="")
+
+    #roll
+    for roll in range(dice_num):
+        baseDie = r(min, max+1)
+        if mode == "sum":
             result += baseDie 
-        print(f"Result is : {result}")
+        else:
+            dice.append(baseDie)
+        print(baseDie, end=" ")
 
-    elif mode == "dl1":
-        for roll in range(dice_num):
-            die = r(min, max+1)
-            dice.append(die)
-            print(die, end=" ")
-
-        print()
+    #sort
+    if ((mode == "dl1") or (mode == "kl1")):
         dice = sorted(dice, reverse=True)
-        
-        print(dice)
-        dice.pop()
-
-        die1, die2, die3 = dice
-        print(die1, die2, die3)
-
-
-        result = sum(dice)
-        print(f"Result is : {result}")
     elif mode == "kh1":
-        for roll in range(dice_num):
-            die = r(min, max+1)
-            dice.append(die)
-            print(die, end=" ")
-
-        print()
         dice = sorted(dice)
-        
-        print(dice)
+
+    #reduce
+    if mode == "dl1":
+        dice.pop()
+        result = sum(dice)
+    elif ((mode == "kh1") or (mode == "kl1")):
         dice = dice.pop()
-
         result = dice
-        print(f"Result is : {result}")
-    elif mode == "kl1":
-        for roll in range(dice_num):
-            die = r(min, max+1)
-            dice.append(die)
-            print(die, end=" ")
 
-        print()
-        dice = sorted(dice, reverse=True)
-        
-        print(dice)
-        dice = dice.pop()
-
-        result = dice
-        print(f"Result is : {result}")
+    print(f"\nResult is : {result} \n")
 
     return result
