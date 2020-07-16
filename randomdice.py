@@ -33,6 +33,10 @@ def RandomDice(dice, mode="sum"):
         print(dice)
         dice.pop()
 
+        die1, die2, die3 = dice
+        print(die1, die2, die3)
+
+
         result = sum(dice)
         print(f"Result is : {result}")
     elif mode == "kh1":
